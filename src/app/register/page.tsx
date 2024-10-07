@@ -28,8 +28,8 @@ const RegisterPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setErrorMessage(""); // Reset error message before the request
-    setSuccessMessage(""); // Reset success message
+    setErrorMessage(""); 
+    setSuccessMessage("");
 
     try {
       const response = await fetch("http://192.168.88.39:7000/auth/signup", {
@@ -42,7 +42,7 @@ const RegisterPage = () => {
 
       if (response.ok) {
         setSuccessMessage("User registered successfully!");
-        router.push("/login"); // Redirect to login after successful registration
+        router.push("/login"); 
       } else {
         const data = await response.json();
         setErrorMessage(data.message || "Registration failed");

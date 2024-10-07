@@ -27,48 +27,53 @@ const LoginPage = () => {
       password: formData.password
     });
 
-    if (result?.error) {
-      setError("Invalid login credentials");
-    } else if (result?.ok) {
-      // Obtener el token de la sesión después del login exitoso
+    if (result?.ok) {
       const session = await fetch("/api/auth/session").then((res) => res.json());
-
-      // Guardar el token
+    
       if (session?.accessToken) {
         sessionStorage.setItem("token", session.accessToken);
       }
       router.push("/");
     }
+
+    if (result?.error) {
+      setError("Invalid login credentials");
+    } else if (result?.ok) {
+      // Aquí no necesitas hacer una segunda llamada para obtener el token
+      router.push("/"); // Redirigir a la página principal
+    }
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Username:</label>
         <input
           type="text"
-          name="username" 
-          placeholder="Username"
+          name="username"
           value={formData.username}
           onChange={handleChange}
           required
         />
+      </div>
+      <div>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
-          placeholder="Password"
           value={formData.password}
           onChange={handleChange}
           required
         />
-        <button type="submit">Login</button>
-      </form>
+      </div>
+      <button type="submit">Login</button>
       {error && <p>{error}</p>}
-    </div>
+    </form>
   );
 };
 
 export default LoginPage;
+
 
 
 

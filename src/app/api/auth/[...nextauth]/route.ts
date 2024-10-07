@@ -11,14 +11,13 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        // Llamada al backend para el login
         const res = await fetch('http://192.168.88.39:7000/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            username: credentials?.username, // Cambiar a username
+            username: credentials?.username, 
             password: credentials?.password
           }),
         });
@@ -26,14 +25,13 @@ export const authOptions: NextAuthOptions = {
         const data = await res.json();
 
         if (res.ok && data) {
-          // Asegurarse de que se devuelve el token y el usuario
           return {
-            id: data.user._id, // Almacena el id del usuario
-            accessToken: data.access_token, // Almacena el token
-            ...data.user // Guarda el resto de la información del usuario
-          }; // Retornar el usuario si las credenciales son correctas
+            id: data.user._id, 
+            accessToken: data.access_token, 
+            ...data.user 
+          }; 
         } else {
-          return null; // Retornar null si las credenciales no son correctas
+          return null; 
         }
       }
     })
@@ -41,15 +39,15 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id; // Agregar el id del usuario al token
-        token.accessToken = user.accessToken; // Guardar el token de acceso en el JWT
+        token.id = user.id; 
+        token.accessToken = user.accessToken; 
       }
       return token;
     },
     async session({ session, token }) {
       if (token.id) {
-        session.id = token.id; // Pasar el id al session
-        session.accessToken = token.accessToken; // Guardar el token en la sesión
+        session.id = token.id; 
+        session.accessToken = token.accessToken;
       }
       return session;
     }
