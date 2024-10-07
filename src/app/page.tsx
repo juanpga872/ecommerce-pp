@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../app/redux/slices/cartSlice'; 
 
 const HomePage = () => {
-  const { t, i18n } = useTranslation();
+  const { t, } = useTranslation();
   const [products, setProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch(); 

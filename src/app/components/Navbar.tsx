@@ -33,7 +33,7 @@ const Navbar = () => {
 
 export default Navbar;
 
-// Estilos para el Navbar usando Styled Components
+
 const NavBarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -74,20 +74,3 @@ const MenuItem = styled.li`
   }
 `;
 
-const CartContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-`;
-
-const CartIcon = styled.span`
-  margin-right: 0.5rem;
-`;
-
-const CartCount = styled.span`
-  background-color: #ffcc00;
-  border-radius: 50%;
-  padding: 0.3rem 0.6rem;
-  color: #333;
-  font-weight: bold;
-`;
