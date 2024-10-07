@@ -1,24 +1,23 @@
-// components/Product.tsx
-"use client"
+"use client";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/slices/cartSlice';
 
 interface ProductProps {
-  id: string;
-  name: string;
+  id: number;
+  title: string; 
   price: number;
 }
 
-const Product = ({ id, name, price }: ProductProps) => {
+const Product = ({ id, title, price }: ProductProps) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ id, name, price, quantity: 1 }));
+    dispatch(addToCart({ id, title, price, quantity: 1 }));
   };
 
   return (
     <div>
-      <h3>{name}</h3>
+      <h3>{title}</h3> 
       <p>Price: ${price}</p>
       <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
@@ -26,3 +25,4 @@ const Product = ({ id, name, price }: ProductProps) => {
 };
 
 export default Product;
+

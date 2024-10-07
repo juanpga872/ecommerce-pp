@@ -1,5 +1,5 @@
-// components/Cart.tsx
-"use client"
+"use client";
+
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux/store';
 import { removeFromCart, clearCart } from '../redux/slices/cartSlice';
@@ -8,7 +8,8 @@ const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const dispatch = useDispatch();
 
-  const handleRemoveFromCart = (id: string) => {
+ 
+  const handleRemoveFromCart = (id: number) => {
     dispatch(removeFromCart(id));
   };
 
@@ -26,7 +27,7 @@ const Cart = () => {
       <ul>
         {cartItems.map((item) => (
           <li key={item.id}>
-            {item.name} - ${item.price} x {item.quantity}
+            {item.title} - ${item.price} x {item.quantity} 
             <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
           </li>
         ))}
@@ -37,3 +38,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

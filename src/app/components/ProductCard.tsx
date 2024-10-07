@@ -1,4 +1,4 @@
-// components/ProductCard.tsx
+
 import styled from 'styled-components';
 
 const ProductCard = styled.div`

@@ -1,4 +1,4 @@
-// components/ProductList.tsx
+
 import styled from 'styled-components';
 
 const ProductList = styled.div`
