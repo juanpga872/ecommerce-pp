@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Input from "../components/Input";
+import FormContainer from "../components/FormContainer";
+import Button from "../components/Button";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -12,7 +15,6 @@ const RegisterPage = () => {
     name: "",
     phone: "",
   });
-
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -27,8 +29,7 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    setErrorMessage(""); 
+    setErrorMessage("");
     setSuccessMessage("");
 
     try {
@@ -42,7 +43,7 @@ const RegisterPage = () => {
 
       if (response.ok) {
         setSuccessMessage("User registered successfully!");
-        router.push("/login"); 
+        router.push("/login");
       } else {
         const data = await response.json();
         setErrorMessage(data.message || "Registration failed");
@@ -53,77 +54,68 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="register-container">
+    <FormContainer>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="phone">Phone:</label>
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <button type="submit">Register</button>
+        <Input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        
+        <Input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
+        
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+        
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        
+        <Input
+          type="text"
+          id="phone"
+          name="phone"
+          placeholder="Phone"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+        />
+        
+        <Button type="submit">Register</Button>
       </form>
 
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-    </div>
+    </FormContainer>
   );
 };
 
 export default RegisterPage;
+
 
